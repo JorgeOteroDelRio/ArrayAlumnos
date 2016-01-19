@@ -10,30 +10,30 @@ import javax.swing.JOptionPane;
  * @author Jota
  */
 public class MetodosArrayAlumnos {
-    int[] notas = new int[pedirTamanho()];
-    String[] nomes =new String[notas.length];
+    private final static int[] notas = new int[pedirTamanho()];
+    private final static String[] nomes =new String[notas.length];
     
-    public int pedirTamanho(){
-        int numElementos = Integer.parseInt(JOptionPane.showInputDialog("Tamaño array:"));
+    public static int pedirTamanho(){
+        int numElementos = Integer.parseInt(JOptionPane.showInputDialog("Numero de alumnos:"));
         return numElementos;
     }
     
-    public String pedirNome(){
+    public static String pedirNome(){
         return JOptionPane.showInputDialog("Nombre alumno:");
     }
     
-    public int pedirNota(){
+    public static int pedirNota(){
         return Integer.parseInt(JOptionPane.showInputDialog("Nota alumno:"));
     }
     
-    public void cargarArray(){
+    public static void cargarArray(){
         for(int i=0;i<notas.length;i++){
             nomes[i]=pedirNome();
             notas[i]=pedirNota();
         }
     }
     
-    public void visualizar(){
+    public static void visualizar(){
         String texto="";
         for(int i =0;i<nomes.length;i++){
             texto+=nomes[i]+"---> " + notas[i]+"\n";
@@ -41,7 +41,7 @@ public class MetodosArrayAlumnos {
         JOptionPane.showMessageDialog(null, texto);
     }
     
-    public void consultarNota(){
+    public static void consultarNota(){
         boolean notFound=true;
         String nome = pedirNome();
         for(int i=0;i<nomes.length;i++){
@@ -57,7 +57,7 @@ public class MetodosArrayAlumnos {
         }
     }
     
-    public void ordenarArray(){
+    public static void ordenarArray(){
         int aux;
         String aux2;
         for(int i=0;i<notas.length-1;i++){
@@ -72,6 +72,35 @@ public class MetodosArrayAlumnos {
                 }
             }
         }
+    }
+    
+    public static void lanzarMenu(){
+        MetodosArrayAlumnos obx = new MetodosArrayAlumnos();
+        boolean condicion=true;
+        do{
+        int opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "MENU\n1)Guardar notas de alumnos.\n"
+        + "2)Visualizar notas.\n3)Consultar nota de alumno.\n4)Ordenar lista de menor a mayor nota.\n5)Salir"));
+        switch(opcion){
+            case 1:
+                obx.cargarArray();
+                break;
+            case 2:
+                obx.visualizar();
+                break;
+            case 3:
+                obx.consultarNota();
+                break;
+            case 4:
+                obx.ordenarArray();
+                break;
+            case 5:
+                condicion=false;
+                break;
+            default:
+                JOptionPane.showMessageDialog(null, "Introduzca una opción válida.");
+        }
+        }while(condicion);
+        
     }
     
 }
