@@ -61,7 +61,7 @@ public class MetodosArrayAlumnos {
         int aux;
         String aux2;
         for(int i=0;i<notas.length-1;i++){
-            for(int j=0;j<notas.length;j++){
+            for(int j=i+1;j<notas.length;j++){
                 if(notas[i]>notas[j]){
                     aux=notas[i];
                     notas[i]=notas[j];
